@@ -1,0 +1,26 @@
+[
+  {
+    "word_id": 1,
+    "hangeul": "안녕하세요",
+    "english_definition": "Hello",
+    "pronunciation_guide": "An-nyeong-ha-se-yo",
+    "audio_sample_path": "audio/hello.wav",
+    "is_learned": false,
+    "stats": {
+      "definition_accuracy_percentage": 0,
+      "pronunciation_quality_score": 0.0
+    }
+  },
+  {
+    "word_id": 2,
+    "hangeul": "감사합니다",
+    "english_definition": "Thank you",
+    "pronunciation_guide": "Gam-sa-ham-ni-da",
+    "audio_sample_path": "audio/thank_you.wav",
+    "is_learned": false,
+    "stats": {
+      "definition_accuracy_percentage": 0,
+      "pronunciation_quality_score": 0.0
+    }
+  }
+]
