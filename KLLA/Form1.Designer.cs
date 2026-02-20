@@ -33,10 +33,17 @@
             learnWordLBL = new Label();
             learnDefLBL = new Label();
             learnPronounceLBL = new Label();
+            panelHeader = new Panel();
+            btnClose = new Button();
+            btnMax = new Button();
+            btnMin = new Button();
+            panelHeader.SuspendLayout();
             SuspendLayout();
             // 
             // learnWordB
             // 
+            learnWordB.FlatStyle = FlatStyle.Flat;
+            learnWordB.ForeColor = Color.White;
             learnWordB.Location = new Point(214, 412);
             learnWordB.Name = "learnWordB";
             learnWordB.Size = new Size(112, 34);
@@ -48,6 +55,7 @@
             // learnMicCB
             // 
             learnMicCB.AutoSize = true;
+            learnMicCB.ForeColor = Color.White;
             learnMicCB.Location = new Point(214, 377);
             learnMicCB.Name = "learnMicCB";
             learnMicCB.Size = new Size(134, 29);
@@ -59,7 +67,8 @@
             // learnWordLBL
             // 
             learnWordLBL.AutoSize = true;
-            learnWordLBL.Location = new Point(59, 27);
+            learnWordLBL.ForeColor = Color.White;
+            learnWordLBL.Location = new Point(42, 149);
             learnWordLBL.Name = "learnWordLBL";
             learnWordLBL.Size = new Size(106, 25);
             learnWordLBL.TabIndex = 2;
@@ -68,7 +77,8 @@
             // learnDefLBL
             // 
             learnDefLBL.AutoSize = true;
-            learnDefLBL.Location = new Point(59, 66);
+            learnDefLBL.ForeColor = Color.White;
+            learnDefLBL.Location = new Point(42, 188);
             learnDefLBL.Name = "learnDefLBL";
             learnDefLBL.Size = new Size(73, 25);
             learnDefLBL.TabIndex = 3;
@@ -77,24 +87,78 @@
             // learnPronounceLBL
             // 
             learnPronounceLBL.AutoSize = true;
-            learnPronounceLBL.Location = new Point(258, 27);
+            learnPronounceLBL.ForeColor = Color.White;
+            learnPronounceLBL.Location = new Point(241, 149);
             learnPronounceLBL.Name = "learnPronounceLBL";
             learnPronounceLBL.Size = new Size(121, 25);
             learnPronounceLBL.TabIndex = 4;
             learnPronounceLBL.Text = "Pronunciation";
+            learnPronounceLBL.Click += learnPronounceLBL_Click;
+            // 
+            // panelHeader
+            // 
+            panelHeader.Controls.Add(btnClose);
+            panelHeader.Controls.Add(btnMax);
+            panelHeader.Controls.Add(btnMin);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(786, 48);
+            panelHeader.TabIndex = 6;
+            panelHeader.MouseDown += panelHeader_MouseDown;
+            // 
+            // btnClose
+            // 
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(727, 11);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(47, 34);
+            btnClose.TabIndex = 2;
+            btnClose.Text = "✕";
+            btnClose.UseVisualStyleBackColor = true;
+            // 
+            // btnMax
+            // 
+            btnMax.FlatAppearance.BorderSize = 0;
+            btnMax.FlatStyle = FlatStyle.Flat;
+            btnMax.ForeColor = Color.White;
+            btnMax.Location = new Point(683, 11);
+            btnMax.Name = "btnMax";
+            btnMax.Size = new Size(47, 34);
+            btnMax.TabIndex = 1;
+            btnMax.Text = "☐";
+            btnMax.UseVisualStyleBackColor = true;
+            // 
+            // btnMin
+            // 
+            btnMin.FlatAppearance.BorderSize = 0;
+            btnMin.FlatStyle = FlatStyle.Flat;
+            btnMin.ForeColor = Color.White;
+            btnMin.Location = new Point(640, 11);
+            btnMin.Name = "btnMin";
+            btnMin.Size = new Size(47, 34);
+            btnMin.TabIndex = 0;
+            btnMin.Text = "−";
+            btnMin.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(873, 556);
+            BackColor = Color.MidnightBlue;
+            ClientSize = new Size(786, 744);
+            Controls.Add(panelHeader);
             Controls.Add(learnPronounceLBL);
             Controls.Add(learnDefLBL);
             Controls.Add(learnWordLBL);
             Controls.Add(learnMicCB);
             Controls.Add(learnWordB);
+            ForeColor = SystemColors.ControlText;
             Name = "Form1";
             Text = "KLLA";
+            panelHeader.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -106,5 +170,9 @@
         private Label learnWordLBL;
         private Label learnDefLBL;
         private Label learnPronounceLBL;
+        private Panel panelHeader;
+        private Button btnClose;
+        private Button btnMax;
+        private Button btnMin;
     }
 }

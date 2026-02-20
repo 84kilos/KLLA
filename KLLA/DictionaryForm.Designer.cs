@@ -28,18 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panelHeader = new Panel();
+            btnClose = new Button();
+            btnMax = new Button();
+            btnMin = new Button();
+            panelHeader.SuspendLayout();
             SuspendLayout();
+            // 
+            // panelHeader
+            // 
+            panelHeader.Controls.Add(btnClose);
+            panelHeader.Controls.Add(btnMax);
+            panelHeader.Controls.Add(btnMin);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(786, 48);
+            panelHeader.TabIndex = 7;
+            panelHeader.MouseDown += panelHeader_MouseDown;
+            // 
+            // btnClose
+            // 
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(727, 11);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(47, 34);
+            btnClose.TabIndex = 2;
+            btnClose.Text = "✕";
+            btnClose.UseVisualStyleBackColor = true;
+            // 
+            // btnMax
+            // 
+            btnMax.FlatAppearance.BorderSize = 0;
+            btnMax.FlatStyle = FlatStyle.Flat;
+            btnMax.ForeColor = Color.White;
+            btnMax.Location = new Point(683, 11);
+            btnMax.Name = "btnMax";
+            btnMax.Size = new Size(47, 34);
+            btnMax.TabIndex = 1;
+            btnMax.Text = "☐";
+            btnMax.UseVisualStyleBackColor = true;
+            // 
+            // btnMin
+            // 
+            btnMin.FlatAppearance.BorderSize = 0;
+            btnMin.FlatStyle = FlatStyle.Flat;
+            btnMin.ForeColor = Color.White;
+            btnMin.Location = new Point(640, 11);
+            btnMin.Name = "btnMin";
+            btnMin.Size = new Size(47, 34);
+            btnMin.TabIndex = 0;
+            btnMin.Text = "−";
+            btnMin.UseVisualStyleBackColor = true;
             // 
             // DictionaryForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.MidnightBlue;
+            ClientSize = new Size(786, 744);
+            Controls.Add(panelHeader);
             Name = "DictionaryForm";
             Text = "Korean Dictionary";
+            Load += DictionaryForm_Load;
+            panelHeader.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel panelHeader;
+        private Button btnClose;
+        private Button btnMax;
+        private Button btnMin;
     }
 }

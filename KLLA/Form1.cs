@@ -2,12 +2,23 @@
 using Microsoft.CognitiveServices.Speech.Audio;
 using Microsoft.CognitiveServices.Speech.PronunciationAssessment;
 using NAudio.Wave;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 
 namespace KLLA
 {
     public partial class Form1 : Form
     {
+
+        //========== COLORS ===========
+        string koreaRed = "#C60C30";
+        string koreaBlue = "#003478";
+        string accentRed = "#D64545";
+        string accentBlue = "#1F4FD8";
+        string darkBlue = "#031c45";
+        string darkGray = "#2B2B2B";
+        string offWhite = "#F5F6FA";
+
         // ========= AUDIO RECORDING =========
         // Added '?' because Nullable is enabled [1] and these start as null [2]
         private WaveInEvent? waveIn;
@@ -32,6 +43,23 @@ namespace KLLA
         public Form1()
         {
             InitializeComponent(); // [3]
+
+            //=========== REMOVE DEFAULT FORM BORDER AND REPLACE WITH CUSTOM ==========
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.BackColor = ColorTranslator.FromHtml(darkBlue);
+
+            btnClose.Click += (_, _) => this.Close();
+
+            btnMin.Click += (_, _) =>
+                this.WindowState = FormWindowState.Minimized;
+
+            btnMax.Click += (_, _) =>
+            {
+                this.WindowState =
+                    this.WindowState == FormWindowState.Maximized
+                    ? FormWindowState.Normal
+                    : FormWindowState.Maximized;
+            };
         }
 
         // ========= PICK RANDOM WORD =========
@@ -53,7 +81,7 @@ namespace KLLA
                 // Ensure we handle potential nulls from the JSON [1]
                 currentKoreanWord = randomWord.hangeul ?? "";
                 learnWordLBL.Text = randomWord.hangeul;
-                learnPronounceLBL.Text = "("+ randomWord.pronunciation_guide +")";
+                learnPronounceLBL.Text = "(" + randomWord.pronunciation_guide + ")";
                 learnDefLBL.Text = randomWord.english_definition;
             }
         }
@@ -148,6 +176,27 @@ namespace KLLA
 
             var pronunciationResult = PronunciationAssessmentResult.FromResult(result);
             return pronunciationResult.AccuracyScore; // Returns the score to the caller [7]
+        }
+
+        private void learnPronounceLBL_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //============= DRAGGABLE WINDOW FUNCTIONALITY =============
+
+        [DllImport("user32.dll")]
+        private static extern void ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        private static extern void SendMessage(
+            IntPtr hWnd, int msg, int wParam, int lParam
+        );
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0xA1, 0x2, 0);
         }
     }
 }
