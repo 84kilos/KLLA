@@ -40,7 +40,7 @@ namespace KLLA
             public bool is_learned { get; set; }
         }
 
-        public Form1()
+        public Form1(Form MainForm)
         {
             InitializeComponent(); // [3]
 
@@ -48,7 +48,10 @@ namespace KLLA
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = ColorTranslator.FromHtml(darkBlue);
 
-            btnClose.Click += (_, _) => this.Close();
+            btnClose.Click += (_, _) => {
+                MainForm.Show();
+                this.Close();
+            };
 
             btnMin.Click += (_, _) =>
                 this.WindowState = FormWindowState.Minimized;

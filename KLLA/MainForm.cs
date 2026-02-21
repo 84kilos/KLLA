@@ -69,17 +69,16 @@ namespace KLLA
 
         private void btnPractice_Click(object sender, EventArgs e)
         {
-            var practiceForm = new Form1();
+            var practiceForm = new Form1(this);
             practiceForm.Show();
-
-            //hides main page (optional)
-            //this.Hide();
+            this.Hide();
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
         {
-            var DictionaryForm = new DictionaryForm();
+            var DictionaryForm = new DictionaryForm(this);
             DictionaryForm.Show();
+            this.Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

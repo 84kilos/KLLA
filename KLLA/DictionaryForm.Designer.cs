@@ -32,6 +32,7 @@
             btnClose = new Button();
             btnMax = new Button();
             btnMin = new Button();
+            listBox1 = new ListBox();
             panelHeader.SuspendLayout();
             SuspendLayout();
             // 
@@ -83,12 +84,22 @@
             btnMin.Text = "−";
             btnMin.UseVisualStyleBackColor = true;
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 25;
+            listBox1.Location = new Point(62, 103);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(180, 129);
+            listBox1.TabIndex = 8;
+            // 
             // DictionaryForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MidnightBlue;
             ClientSize = new Size(786, 744);
+            Controls.Add(listBox1);
             Controls.Add(panelHeader);
             Name = "DictionaryForm";
             Text = "Korean Dictionary";
@@ -103,5 +114,6 @@
         private Button btnClose;
         private Button btnMax;
         private Button btnMin;
+        private ListBox listBox1;
     }
 }

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Supabase;
 
 namespace KLLA
 {
@@ -22,19 +23,25 @@ namespace KLLA
         string darkGray = "#2B2B2B";
         string offWhite = "#F5F6FA";
 
-        public DictionaryForm()
+        public DictionaryForm(Form MainForm)
         {
+
             InitializeComponent();
 
             //=========== REMOVE DEFAULT FORM BORDER AND REPLACE WITH CUSTOM ==========
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = ColorTranslator.FromHtml(darkBlue);
 
-            btnClose.Click += (_, _) => this.Close();
-
+            //------------ Unhide main form, close --------------
+            btnClose.Click += (_, _) =>
+            {
+                MainForm.Show();
+                this.Close();
+            };
+            //------------ Minimize button --------------
             btnMin.Click += (_, _) =>
                 this.WindowState = FormWindowState.Minimized;
-
+            //------------ Maximize/Normal Size --------------
             btnMax.Click += (_, _) =>
             {
                 this.WindowState =
@@ -46,7 +53,7 @@ namespace KLLA
 
         private void DictionaryForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         //============= DRAGGABLE WINDOW FUNCTIONALITY =============

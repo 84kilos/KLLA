@@ -10,8 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Cloud.Speech.V1" Version="3.9.0" />
-    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.48.1" />
+    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.48.2" />
     <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="Supabase" Version="1.1.1" />
+    <PackageReference Include="Supabase.Postgrest" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
