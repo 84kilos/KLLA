@@ -10,12 +10,16 @@ namespace KLLA
     public partial class Form1 : Form
     {
 
+        //============= FROM GDI, CREATES ROUNDED RECTANGLE REGION IN MEMORY =============
+        [DllImport("Gdi32.dll")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeft, int nTop, int nRight, int nBottom, int nWidth, int nHeight);
+
         //========== COLORS ===========
         string koreaRed = "#C60C30";
         string koreaBlue = "#003478";
         string accentRed = "#D64545";
-        string accentBlue = "#1F4FD8";
-        string darkBlue = "#031c45";
+        string accentBlue = "#0E7AFE";
+        string white = "#ffffff";
         string darkGray = "#2B2B2B";
         string offWhite = "#F5F6FA";
 
@@ -46,9 +50,16 @@ namespace KLLA
 
             //=========== REMOVE DEFAULT FORM BORDER AND REPLACE WITH CUSTOM ==========
             this.FormBorderStyle = FormBorderStyle.None;
-            this.BackColor = ColorTranslator.FromHtml(darkBlue);
+            this.BackColor = ColorTranslator.FromHtml(white);
 
-            btnClose.Click += (_, _) => {
+
+            //============= SETS REGION OF FORM TO BE ROUNDED BOX =============
+            this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+
+            //============= CUSTOM BORDER WINDOW BUTTON FUNCTIONALITIES =============
+            btnClose.Click += (_, _) =>
+            {
                 MainForm.Show();
                 this.Close();
             };
@@ -63,6 +74,13 @@ namespace KLLA
                     ? FormWindowState.Normal
                     : FormWindowState.Maximized;
             };
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            //============= FOR MAINTAINING BORDER RADIUS ON RESIZE =============
+            base.OnResize(e);
+            this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
         // ========= PICK RANDOM WORD =========
@@ -200,6 +218,11 @@ namespace KLLA
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0xA1, 0x2, 0);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

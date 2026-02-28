@@ -1,75 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Supabase;
+using System;
 using System.Windows.Forms;
-using Supabase;
 
 namespace KLLA
 {
-    public partial class DictionaryForm : Form
+    public partial class DictionaryForm : BaseForm
     {
-        //========== COLORS ===========
-        string koreaRed = "#C60C30";
-        string koreaBlue = "#003478";
-        string accentRed = "#D64545";
-        string accentBlue = "#1F4FD8";
-        string darkBlue = "#031c45";
-        string darkGray = "#2B2B2B";
-        string offWhite = "#F5F6FA";
+        // ============= SUPABASE SETUP =============
+        private readonly string url = "https://cdfkpfjeflljhutuwrun.supabase.co/";
+        private readonly string key = "sb_publishable_gnJ_0UWf-bYZ8_1J6Xgqxg_yRfU4ucY";
+        private Supabase.Client sb;
 
-        public DictionaryForm(Form MainForm)
+        private readonly Form mainForm;
+
+        public DictionaryForm(Form mainForm)
         {
-
             InitializeComponent();
 
-            //=========== REMOVE DEFAULT FORM BORDER AND REPLACE WITH CUSTOM ==========
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.BackColor = ColorTranslator.FromHtml(darkBlue);
+            this.mainForm = mainForm;
 
-            //------------ Unhide main form, close --------------
+            // ============= WIRE CUSTOM WINDOW BORDER BUTTONS AND PANEL =============
+            WireWindowButtons(btnClose, btnMin, btnMax);
+            EnableDraggableHeader(panelHeader);
+
+            // ============= REWIRE CLOSE BUTTON TO RETURN TO MAIN =============
             btnClose.Click += (_, _) =>
             {
-                MainForm.Show();
+                mainForm.Show();
                 this.Close();
             };
-            //------------ Minimize button --------------
-            btnMin.Click += (_, _) =>
-                this.WindowState = FormWindowState.Minimized;
-            //------------ Maximize/Normal Size --------------
-            btnMax.Click += (_, _) =>
+
+            // ============= Initialize Supabase Client =============
+            sb = new Supabase.Client(url, key);
+            _ = sb.InitializeAsync();
+
+            // ============= APPLY ROUNDED CORNERS WHEN FORM IS SHOWN =============
+            this.Shown += (s, e) =>
             {
-                this.WindowState =
-                    this.WindowState == FormWindowState.Maximized
-                    ? FormWindowState.Normal
-                    : FormWindowState.Maximized;
+                ApplyRoundedRegion(this, 30);
+                ApplyRoundedRegion(btnMin, 15);
+                ApplyRoundedRegion(btnMax, 15);
+                ApplyRoundedRegion(btnClose, 15);
             };
         }
 
-        private void DictionaryForm_Load(object sender, EventArgs e)
+        private async void DictionaryForm_Load(object sender, EventArgs e)
         {
-            
-        }
+            // Add any specific load logic here
+            try
+            {
+                // Ensure Supabase client is initialized
+                if (sb == null) return;
 
-        //============= DRAGGABLE WINDOW FUNCTIONALITY =============
+                // Fetch all words from Supabase
+                var words = await sb.From<Word>()
+                                    .Select("*")
+                                    .Get();
 
-        [DllImport("user32.dll")]
-        private static extern void ReleaseCapture();
+                // Clear ListBox first
+                listBox1.Items.Clear();
 
-        [DllImport("user32.dll")]
-        private static extern void SendMessage(
-            IntPtr hWnd, int msg, int wParam, int lParam
-        );
+                // Add each word's Korean text to the ListBox
+                foreach (var word in words.Models)
+                {
+                    listBox1.Items.Add(word.KoreanWord);
+                }
 
-        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0xA1, 0x2, 0);
+                // Optional: store the full list in a field for later reference
+                //allWords = words.Models.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load words: {ex.Message}");
+            }
         }
     }
 }
