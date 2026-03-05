@@ -40,7 +40,7 @@ namespace KLLA
         // ============= BUTTON CLICK EVENTS =============
         private void btnPractice_Click(object sender, EventArgs e)
         {
-            var practiceForm = new PracticeForm(this);
+            var practiceForm = new Form1(this);
             practiceForm.Show();
             this.Hide();
         }

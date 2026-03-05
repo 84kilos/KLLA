@@ -7,9 +7,7 @@ namespace KLLA
     public partial class DictionaryForm : BaseForm
     {
         // ============= SUPABASE SETUP =============
-        private readonly string url = "https://cdfkpfjeflljhutuwrun.supabase.co/";
-        private readonly string key = "sb_publishable_gnJ_0UWf-bYZ8_1J6Xgqxg_yRfU4ucY";
-        private Supabase.Client sb;
+        private KllaDB db = new KllaDB();
 
         private readonly Form mainForm;
 
@@ -30,10 +28,6 @@ namespace KLLA
                 this.Close();
             };
 
-            // ============= Initialize Supabase Client =============
-            sb = new Supabase.Client(url, key);
-            _ = sb.InitializeAsync();
-
             // ============= APPLY ROUNDED CORNERS WHEN FORM IS SHOWN =============
             this.Shown += (s, e) =>
             {
@@ -46,32 +40,23 @@ namespace KLLA
 
         private async void DictionaryForm_Load(object sender, EventArgs e)
         {
-            // Add any specific load logic here
             try
             {
-                // Ensure Supabase client is initialized
-                if (sb == null) return;
+                await db.Connect_Database();
 
-                // Fetch all words from Supabase
-                var words = await sb.From<Word>()
-                                    .Select("*")
-                                    .Get();
+                var words = db.GetAllWords();
 
-                // Clear ListBox first
                 listBox1.Items.Clear();
 
-                // Add each word's Korean text to the ListBox
-                foreach (var word in words.Models)
+                foreach (var word in words)
                 {
-                    listBox1.Items.Add(word.KoreanWord);
+                    if (!string.IsNullOrWhiteSpace(word.KoreanWord))
+                        listBox1.Items.Add(word.KoreanWord);
                 }
-
-                // Optional: store the full list in a field for later reference
-                //allWords = words.Models.ToList();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to load words: {ex.Message}");
+                MessageBox.Show("Database load failed: " + ex.Message);
             }
         }
     }

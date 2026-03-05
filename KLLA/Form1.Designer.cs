@@ -37,6 +37,7 @@
             btnClose = new Button();
             btnMax = new Button();
             btnMin = new Button();
+            listBox1 = new ListBox();
             panelHeader.SuspendLayout();
             SuspendLayout();
             // 
@@ -143,12 +144,22 @@
             btnMin.Text = "−";
             btnMin.UseVisualStyleBackColor = true;
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 25;
+            listBox1.Location = new Point(70, 242);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(590, 129);
+            listBox1.TabIndex = 7;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(786, 744);
+            Controls.Add(listBox1);
             Controls.Add(panelHeader);
             Controls.Add(learnPronounceLBL);
             Controls.Add(learnDefLBL);
@@ -175,5 +186,6 @@
         private Button btnClose;
         private Button btnMax;
         private Button btnMin;
+        private ListBox listBox1;
     }
 }

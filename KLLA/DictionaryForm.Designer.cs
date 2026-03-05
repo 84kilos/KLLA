@@ -92,7 +92,7 @@
             listBox1.ItemHeight = 25;
             listBox1.Location = new Point(62, 103);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(180, 129);
+            listBox1.Size = new Size(514, 429);
             listBox1.TabIndex = 8;
             // 
             // DictionaryForm

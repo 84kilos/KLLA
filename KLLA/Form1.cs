@@ -83,6 +83,11 @@ namespace KLLA
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
         // ========= PICK RANDOM WORD =========
         private void learnWordB_Click(object sender, EventArgs e)
         {
@@ -196,7 +201,12 @@ namespace KLLA
                 throw new Exception("Speech not recognized");
 
             var pronunciationResult = PronunciationAssessmentResult.FromResult(result);
-            return pronunciationResult.AccuracyScore; // Returns the score to the caller [7]
+            listBox1.Items.Add("Accuracy Score: " + pronunciationResult.AccuracyScore);
+            listBox1.Items.Add("Pronunciation Score: " + pronunciationResult.ProsodyScore);
+            listBox1.Items.Add("Fluency Score: " + pronunciationResult.FluencyScore);
+            listBox1.Items.Add("Completeness Score: " + pronunciationResult.CompletenessScore);
+            listBox1.Items.Add("Prosody Score: " + pronunciationResult.ProsodyScore);
+            return pronunciationResult.ProsodyScore; // Returns the score to the caller [7]
         }
 
         private void learnPronounceLBL_Click(object sender, EventArgs e)
@@ -220,9 +230,5 @@ namespace KLLA
             SendMessage(this.Handle, 0xA1, 0x2, 0);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
