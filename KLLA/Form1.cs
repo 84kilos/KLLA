@@ -27,7 +27,9 @@ namespace KLLA
         // Added '?' because Nullable is enabled [1] and these start as null [2]
         private WaveInEvent? waveIn;
         private WaveFileWriter? waveWriter;
-        private readonly string audioPath = @"C:\KLLA\test.wav";
+        //private readonly string audioPath = @"\audio\input.wav";
+        private readonly string audioPath = Path.Combine(Application.StartupPath, "audio", "input.wav");
+
 
         // ========= AZURE CONFIG =========
         private const string AZURE_KEY = "AZLLB8UpSxw6iKhjpMIG3FP7BGPcxyArQ6P3wP1XNunBNUhHdEdKJQQJ99CBACYeBjFXJ3w3AAAYACOGISoR"; // [2]
@@ -181,6 +183,7 @@ namespace KLLA
             var speechConfig = SpeechConfig.FromSubscription(AZURE_KEY, AZURE_REGION); // [8]
             speechConfig.SpeechRecognitionLanguage = "ko-KR";
 
+
             using var audioConfig = AudioConfig.FromWavFileInput(wavPath);
             using var recognizer = new SpeechRecognizer(speechConfig, audioConfig);
 
@@ -190,6 +193,8 @@ namespace KLLA
                 granularity: Granularity.Phoneme,
                 enableMiscue: true
             );
+
+            pronunciationConfig.EnableProsodyAssessment();
 
 
 
@@ -202,7 +207,7 @@ namespace KLLA
 
             var pronunciationResult = PronunciationAssessmentResult.FromResult(result);
             listBox1.Items.Add("Accuracy Score: " + pronunciationResult.AccuracyScore);
-            listBox1.Items.Add("Pronunciation Score: " + pronunciationResult.ProsodyScore);
+            listBox1.Items.Add("Pronunciation Score: " + pronunciationResult.PronunciationScore);
             listBox1.Items.Add("Fluency Score: " + pronunciationResult.FluencyScore);
             listBox1.Items.Add("Completeness Score: " + pronunciationResult.CompletenessScore);
             listBox1.Items.Add("Prosody Score: " + pronunciationResult.ProsodyScore);
@@ -230,5 +235,9 @@ namespace KLLA
             SendMessage(this.Handle, 0xA1, 0x2, 0);
         }
 
+        private void testBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

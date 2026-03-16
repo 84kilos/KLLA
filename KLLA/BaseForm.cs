@@ -27,6 +27,9 @@ namespace KLLA
             // =========== CUSTOM BORDER SETTINGS ===========
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = OffWhite;
+
+            // =========== START CENTERED ===========
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         // ============= DRAGGABLE HEADER LOGIC =============

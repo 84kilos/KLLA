@@ -32,8 +32,23 @@
             btnClose = new Button();
             btnMax = new Button();
             btnMin = new Button();
-            listBox1 = new ListBox();
+            tbSearch = new TextBox();
+            gbDictionary = new GroupBox();
+            btnPlay3 = new Button();
+            btnPlay2 = new Button();
+            btnPlay1 = new Button();
+            btnPlay0 = new Button();
+            lblWord0 = new Label();
+            lblWord1 = new Label();
+            lblWord2 = new Label();
+            lblWord3 = new Label();
+            lblTitleEng = new Label();
+            lblTitleKor1 = new Label();
+            lblTitleKor2 = new Label();
+            btnNext = new Button();
+            btnBack = new Button();
             panelHeader.SuspendLayout();
+            gbDictionary.SuspendLayout();
             SuspendLayout();
             // 
             // panelHeader
@@ -85,29 +100,219 @@
             btnMin.Text = "−";
             btnMin.UseVisualStyleBackColor = false;
             // 
-            // listBox1
+            // tbSearch
             // 
-            listBox1.BackColor = SystemColors.GradientActiveCaption;
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 25;
-            listBox1.Location = new Point(62, 103);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(514, 429);
-            listBox1.TabIndex = 8;
+            tbSearch.BackColor = SystemColors.ScrollBar;
+            tbSearch.BorderStyle = BorderStyle.None;
+            tbSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbSearch.Location = new Point(71, 161);
+            tbSearch.Name = "tbSearch";
+            tbSearch.Size = new Size(650, 32);
+            tbSearch.TabIndex = 10;
+            tbSearch.TextAlign = HorizontalAlignment.Center;
+            tbSearch.TextChanged += tbSearch_TextChanged;
+            // 
+            // gbDictionary
+            // 
+            gbDictionary.BackColor = Color.Transparent;
+            gbDictionary.Controls.Add(btnPlay3);
+            gbDictionary.Controls.Add(btnPlay2);
+            gbDictionary.Controls.Add(btnPlay1);
+            gbDictionary.Controls.Add(btnPlay0);
+            gbDictionary.Controls.Add(lblWord0);
+            gbDictionary.Controls.Add(lblWord1);
+            gbDictionary.Controls.Add(lblWord2);
+            gbDictionary.Controls.Add(lblWord3);
+            gbDictionary.FlatStyle = FlatStyle.Flat;
+            gbDictionary.Location = new Point(29, 212);
+            gbDictionary.Name = "gbDictionary";
+            gbDictionary.Size = new Size(727, 533);
+            gbDictionary.TabIndex = 9;
+            gbDictionary.TabStop = false;
+            // 
+            // btnPlay3
+            // 
+            btnPlay3.BackColor = Color.WhiteSmoke;
+            btnPlay3.FlatAppearance.BorderSize = 0;
+            btnPlay3.FlatStyle = FlatStyle.Flat;
+            btnPlay3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPlay3.ForeColor = Color.Black;
+            btnPlay3.Location = new Point(6, 439);
+            btnPlay3.Name = "btnPlay3";
+            btnPlay3.Size = new Size(59, 48);
+            btnPlay3.TabIndex = 20;
+            btnPlay3.Text = "⏵";
+            btnPlay3.UseVisualStyleBackColor = false;
+            // 
+            // btnPlay2
+            // 
+            btnPlay2.BackColor = Color.WhiteSmoke;
+            btnPlay2.FlatAppearance.BorderSize = 0;
+            btnPlay2.FlatStyle = FlatStyle.Flat;
+            btnPlay2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPlay2.ForeColor = Color.Black;
+            btnPlay2.Location = new Point(6, 310);
+            btnPlay2.Name = "btnPlay2";
+            btnPlay2.Size = new Size(59, 48);
+            btnPlay2.TabIndex = 19;
+            btnPlay2.Text = "⏵";
+            btnPlay2.UseVisualStyleBackColor = false;
+            // 
+            // btnPlay1
+            // 
+            btnPlay1.BackColor = Color.WhiteSmoke;
+            btnPlay1.FlatAppearance.BorderSize = 0;
+            btnPlay1.FlatStyle = FlatStyle.Flat;
+            btnPlay1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPlay1.ForeColor = Color.Black;
+            btnPlay1.Location = new Point(6, 181);
+            btnPlay1.Name = "btnPlay1";
+            btnPlay1.Size = new Size(59, 48);
+            btnPlay1.TabIndex = 18;
+            btnPlay1.Text = "⏵";
+            btnPlay1.UseVisualStyleBackColor = false;
+            // 
+            // btnPlay0
+            // 
+            btnPlay0.BackColor = Color.WhiteSmoke;
+            btnPlay0.FlatAppearance.BorderSize = 0;
+            btnPlay0.FlatStyle = FlatStyle.Flat;
+            btnPlay0.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPlay0.ForeColor = Color.Black;
+            btnPlay0.Location = new Point(6, 52);
+            btnPlay0.Name = "btnPlay0";
+            btnPlay0.Size = new Size(59, 48);
+            btnPlay0.TabIndex = 17;
+            btnPlay0.Text = "⏵";
+            btnPlay0.UseVisualStyleBackColor = false;
+            // 
+            // lblWord0
+            // 
+            lblWord0.BackColor = Color.WhiteSmoke;
+            lblWord0.Location = new Point(71, 27);
+            lblWord0.Name = "lblWord0";
+            lblWord0.Size = new Size(621, 100);
+            lblWord0.TabIndex = 6;
+            lblWord0.Text = "Loading...";
+            lblWord0.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblWord1
+            // 
+            lblWord1.BackColor = Color.WhiteSmoke;
+            lblWord1.Location = new Point(71, 156);
+            lblWord1.Name = "lblWord1";
+            lblWord1.Size = new Size(621, 100);
+            lblWord1.TabIndex = 5;
+            lblWord1.Text = "Loading...";
+            lblWord1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblWord2
+            // 
+            lblWord2.BackColor = Color.WhiteSmoke;
+            lblWord2.Location = new Point(71, 285);
+            lblWord2.Name = "lblWord2";
+            lblWord2.Size = new Size(621, 100);
+            lblWord2.TabIndex = 4;
+            lblWord2.Text = "Loading...";
+            lblWord2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblWord3
+            // 
+            lblWord3.BackColor = Color.WhiteSmoke;
+            lblWord3.Location = new Point(71, 414);
+            lblWord3.Name = "lblWord3";
+            lblWord3.Size = new Size(621, 100);
+            lblWord3.TabIndex = 3;
+            lblWord3.Text = "Loading...";
+            lblWord3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTitleEng
+            // 
+            lblTitleEng.AutoSize = true;
+            lblTitleEng.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitleEng.ForeColor = Color.Black;
+            lblTitleEng.Location = new Point(50, 51);
+            lblTitleEng.Name = "lblTitleEng";
+            lblTitleEng.Size = new Size(361, 96);
+            lblTitleEng.TabIndex = 13;
+            lblTitleEng.Text = "Dictionary";
+            lblTitleEng.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTitleKor1
+            // 
+            lblTitleKor1.AutoSize = true;
+            lblTitleKor1.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitleKor1.ForeColor = Color.Blue;
+            lblTitleKor1.Location = new Point(392, 51);
+            lblTitleKor1.Name = "lblTitleKor1";
+            lblTitleKor1.Size = new Size(82, 96);
+            lblTitleKor1.TabIndex = 14;
+            lblTitleKor1.Text = "d";
+            lblTitleKor1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTitleKor2
+            // 
+            lblTitleKor2.AutoSize = true;
+            lblTitleKor2.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitleKor2.ForeColor = Color.Blue;
+            lblTitleKor2.Location = new Point(480, 51);
+            lblTitleKor2.Name = "lblTitleKor2";
+            lblTitleKor2.Size = new Size(82, 96);
+            lblTitleKor2.TabIndex = 15;
+            lblTitleKor2.Text = "d";
+            lblTitleKor2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.WhiteSmoke;
+            btnNext.FlatAppearance.BorderSize = 0;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnNext.ForeColor = Color.Black;
+            btnNext.Location = new Point(397, 770);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(59, 48);
+            btnNext.TabIndex = 3;
+            btnNext.Text = ">";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.WhiteSmoke;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.ForeColor = Color.Black;
+            btnBack.Location = new Point(332, 770);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(59, 48);
+            btnBack.TabIndex = 16;
+            btnBack.Text = "<";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // DictionaryForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(786, 744);
-            Controls.Add(listBox1);
+            ClientSize = new Size(786, 844);
+            Controls.Add(btnBack);
+            Controls.Add(btnNext);
+            Controls.Add(lblTitleKor2);
+            Controls.Add(lblTitleKor1);
+            Controls.Add(lblTitleEng);
+            Controls.Add(tbSearch);
+            Controls.Add(gbDictionary);
             Controls.Add(panelHeader);
             Name = "DictionaryForm";
             Text = "Korean Dictionary";
             Load += DictionaryForm_Load;
             panelHeader.ResumeLayout(false);
+            gbDictionary.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -116,6 +321,20 @@
         private Button btnClose;
         private Button btnMax;
         private Button btnMin;
-        private ListBox listBox1;
+        private TextBox tbSearch;
+        private GroupBox gbDictionary;
+        private Label lblTitleEng;
+        private Label lblTitleKor1;
+        private Label lblTitleKor2;
+        private Label lblWord0;
+        private Label lblWord1;
+        private Label lblWord2;
+        private Label lblWord3;
+        private Button btnNext;
+        private Button btnBack;
+        private Button btnPlay0;
+        private Button btnPlay2;
+        private Button btnPlay1;
+        private Button btnPlay3;
     }
 }

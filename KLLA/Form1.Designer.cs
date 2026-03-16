@@ -38,6 +38,7 @@
             btnMax = new Button();
             btnMin = new Button();
             listBox1 = new ListBox();
+            testBtn = new Button();
             panelHeader.SuspendLayout();
             SuspendLayout();
             // 
@@ -153,12 +154,23 @@
             listBox1.Size = new Size(590, 129);
             listBox1.TabIndex = 7;
             // 
+            // testBtn
+            // 
+            testBtn.Location = new Point(446, 539);
+            testBtn.Name = "testBtn";
+            testBtn.Size = new Size(112, 34);
+            testBtn.TabIndex = 8;
+            testBtn.Text = "test button";
+            testBtn.UseVisualStyleBackColor = true;
+            testBtn.Click += testBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(786, 744);
+            Controls.Add(testBtn);
             Controls.Add(listBox1);
             Controls.Add(panelHeader);
             Controls.Add(learnPronounceLBL);
@@ -187,5 +199,6 @@
         private Button btnMax;
         private Button btnMin;
         private ListBox listBox1;
+        private Button testBtn;
     }
 }
