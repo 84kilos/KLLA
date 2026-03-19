@@ -83,6 +83,7 @@ namespace KLLA
                 lblTitleKor2.Text = "전";
 
                 tbSearch.BackColor = ColorTranslator.FromHtml("#6978C7");
+                //tbSearch.PlaceholderText.Fore = Color.Gray;
 
 
             };

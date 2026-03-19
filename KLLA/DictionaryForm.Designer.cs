@@ -107,6 +107,7 @@
             tbSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             tbSearch.Location = new Point(71, 161);
             tbSearch.Name = "tbSearch";
+            tbSearch.PlaceholderText = "Search...";
             tbSearch.Size = new Size(650, 32);
             tbSearch.TabIndex = 10;
             tbSearch.TextAlign = HorizontalAlignment.Center;
