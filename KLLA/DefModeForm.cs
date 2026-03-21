@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CognitiveServices.Speech;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +17,16 @@ namespace KLLA
     {
         private readonly Form practiceForm;
 
+        //database interaction
         private Random rand = new Random();
         private KllaDB db = new KllaDB();
         KoreanVocabulary currentWord;
         List<KoreanVocabulary> words;
         List<string> choices = new List<string>();
+
+        //azure tts setup
+        private const string AZURE_KEY = "AZLLB8UpSxw6iKhjpMIG3FP7BGPcxyArQ6P3wP1XNunBNUhHdEdKJQQJ99CBACYeBjFXJ3w3AAAYACOGISoR"; // [2]
+        private const string AZURE_REGION = "eastus"; // [3]
 
         //global stats for finish screen
         int questionsCounter = 0;
@@ -237,9 +243,26 @@ namespace KLLA
             btnFinish.Visible = true;
         }
 
-        private void lblWordKor_Click(object sender, EventArgs e)
+        private async void lblWordKor_Click(object sender, EventArgs e)
         {
             //TODO play sound
+            //setup azure tts synthesizer
+            var speechConfig = SpeechConfig.FromSubscription(AZURE_KEY, AZURE_REGION);
+            using var synthesizer = new SpeechSynthesizer(speechConfig);
+            speechConfig.SpeechSynthesisVoiceName = "ko-KR-SunHiNeural";
+
+            var result = await synthesizer.SpeakTextAsync(currentWord.KoreanWord);
+
+            if (result.Reason == ResultReason.Canceled)
+            {
+                var details = SpeechSynthesisCancellationDetails.FromResult(result);
+
+                MessageBox.Show(
+                    $"Reason: {details.Reason}\n" +
+                    $"ErrorCode: {details.ErrorCode}\n" +
+                    $"Details: {details.ErrorDetails}"
+                );
+            }
         }
 
         //============ NEXT QUESTION BTN ============
