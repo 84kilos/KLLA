@@ -30,17 +30,17 @@ namespace KLLA
         private void MainForm_Load(object sender, EventArgs e)
         {
             // ============= SET PRETTY TITLE COLORS =============
-            lblTitleK.ForeColor = ColorTranslator.FromHtml("#A12259");
-            lblTitleL.ForeColor = ColorTranslator.FromHtml("#854D90");
-            lblTitleL2.ForeColor = ColorTranslator.FromHtml("#6978C7");
-            lblTitleA.ForeColor = ColorTranslator.FromHtml("#4DA3FF");
+            lblTitleK.ForeColor = RTBGradient1;
+            lblTitleL.ForeColor = RTBGradient2;
+            lblTitleL2.ForeColor = RTBGradient3;
+            lblTitleA.ForeColor = RTBGradient4;
             lblTitleSub.ForeColor = AccentBlue;
         }
 
         // ============= BUTTON CLICK EVENTS =============
         private void btnPractice_Click(object sender, EventArgs e)
         {
-            var practiceForm = new Form1(this);
+            var practiceForm = new PracticeForm(this);
             practiceForm.Show();
             this.Hide();
         }

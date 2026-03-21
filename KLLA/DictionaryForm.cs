@@ -5,6 +5,7 @@ using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.CognitiveServices.Speech;
+using Google.Protobuf.WellKnownTypes;
 
 namespace KLLA
 {
@@ -17,6 +18,7 @@ namespace KLLA
 
         List<KoreanVocabulary> words;
         List<KoreanVocabulary> filteredWords;
+        private bool placeHolderActive = true;
         int wordId = 0;
         int MAXPAGESIZE = 4;
 
@@ -31,11 +33,16 @@ namespace KLLA
             this.mainForm = mainForm;
 
             // ============= WIRE CUSTOM WINDOW BORDER BUTTONS AND PANEL =============
-            WireWindowButtons(btnClose, btnMin, btnMax);
+            WireWindowButtons(btnClose, btnReturn, btnMin, btnMax);
             EnableDraggableHeader(panelHeader);
 
-            // ============= REWIRE CLOSE BUTTON TO RETURN TO MAIN =============
+            // ============= REWIRE CLOSE AND RETURN BUTTON TO RETURN TO MAIN =============
             btnClose.Click += (_, _) =>
+            {
+                mainForm.Show();
+                this.Close();
+            };
+            btnReturn.Click += (_, _) =>
             {
                 mainForm.Show();
                 this.Close();
@@ -63,6 +70,7 @@ namespace KLLA
                 ApplyRoundedRegion(btnMin, 15);
                 ApplyRoundedRegion(btnMax, 15);
                 ApplyRoundedRegion(btnClose, 15);
+                ApplyRoundedRegion(btnReturn, 15);
                 ApplyRoundedRegion(tbSearch, 20);
                 //ApplyRoundedRegion(gbDictionary, 20);
                 ApplyRoundedRegion(lblWord0, 20);
@@ -134,7 +142,7 @@ namespace KLLA
             // filter words based on search query
             string query = tbSearch.Text.Trim().ToLower();
 
-            if (string.IsNullOrEmpty(query))        //if query empty, no filter
+            if (string.IsNullOrEmpty(query) || placeHolderActive)        //if query empty, no filter
 
             {
                 filteredWords = words;
@@ -148,6 +156,23 @@ namespace KLLA
             // reset to first page
             wordId = 0;
             LoadPage();
+        }
+        private void tbSearch_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (((TextBox)sender).Text == "Search...")
+            {
+                ((TextBox)sender).Text = string.Empty;
+                placeHolderActive = false;
+            }
+        }
+        private void tbSearch_Leave(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == string.Empty)
+            {
+                ((TextBox)sender).Text = "Search...";
+                placeHolderActive = true;
+                filteredWords = words;
+            }
         }
 
         // ============= TEXT-TO-SPEECH FUNCTIONALITY =============
@@ -204,5 +229,6 @@ namespace KLLA
         {
             ((Label)sender).BackColor = Color.WhiteSmoke;
         }
+
     }
 }

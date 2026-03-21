@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelHeader = new Panel();
+            btnReturn = new Button();
             btnClose = new Button();
             btnMax = new Button();
             btnMin = new Button();
@@ -53,6 +54,7 @@
             // 
             // panelHeader
             // 
+            panelHeader.Controls.Add(btnReturn);
             panelHeader.Controls.Add(btnClose);
             panelHeader.Controls.Add(btnMax);
             panelHeader.Controls.Add(btnMin);
@@ -61,6 +63,19 @@
             panelHeader.Name = "panelHeader";
             panelHeader.Size = new Size(786, 48);
             panelHeader.TabIndex = 7;
+            // 
+            // btnReturn
+            // 
+            btnReturn.FlatAppearance.BorderSize = 0;
+            btnReturn.FlatStyle = FlatStyle.Flat;
+            btnReturn.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReturn.ForeColor = Color.Black;
+            btnReturn.Location = new Point(12, 11);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(47, 34);
+            btnReturn.TabIndex = 3;
+            btnReturn.Text = "←";
+            btnReturn.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -105,13 +120,16 @@
             tbSearch.BackColor = SystemColors.ScrollBar;
             tbSearch.BorderStyle = BorderStyle.None;
             tbSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbSearch.ForeColor = Color.White;
             tbSearch.Location = new Point(71, 161);
             tbSearch.Name = "tbSearch";
-            tbSearch.PlaceholderText = "Search...";
             tbSearch.Size = new Size(650, 32);
             tbSearch.TabIndex = 10;
+            tbSearch.Text = "Search...";
             tbSearch.TextAlign = HorizontalAlignment.Center;
+            tbSearch.MouseClick += tbSearch_MouseClick;
             tbSearch.TextChanged += tbSearch_TextChanged;
+            tbSearch.Leave += tbSearch_Leave;
             // 
             // gbDictionary
             // 
@@ -337,5 +355,6 @@
         private Button btnPlay2;
         private Button btnPlay1;
         private Button btnPlay3;
+        private Button btnReturn;
     }
 }

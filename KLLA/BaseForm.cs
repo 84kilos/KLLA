@@ -14,6 +14,10 @@ namespace KLLA
         protected readonly Color AccentBlue = ColorTranslator.FromHtml("#4DA3FF");
         protected readonly Color DarkGray = ColorTranslator.FromHtml("#2B2B2B");
         protected readonly Color OffWhite = ColorTranslator.FromHtml("#F5F6FA");
+        protected readonly Color RTBGradient1 = ColorTranslator.FromHtml("#A12259");
+        protected readonly Color RTBGradient2 = ColorTranslator.FromHtml("#854D90");
+        protected readonly Color RTBGradient3 = ColorTranslator.FromHtml("#6978C7");
+        protected readonly Color RTBGradient4 = ColorTranslator.FromHtml("#4DA3FF");
         protected readonly Color white = Color.White;
         protected readonly Color black = Color.Black;
 
@@ -21,6 +25,7 @@ namespace KLLA
         protected Button btnClose;
         protected Button btnMin;
         protected Button btnMax;
+        protected Button btnReturn;
 
         public BaseForm()
         {
@@ -51,6 +56,31 @@ namespace KLLA
         }
 
         // ============= ASSIGN BUTTONS FOR AUTOMATIC WIRING FOR CHILDREN =============
+        protected void WireWindowButtons(Button close, Button ret, Button min, Button max)
+        {
+            btnClose = close;
+            btnMin = min;
+            btnMax = max;
+            btnReturn = ret;
+
+            if (btnClose != null)
+                btnClose.Click += (_, _) => this.Close();
+
+            if (btnReturn != null)
+                btnReturn.Click += (_, _) => this.Close();
+
+            if (btnMin != null)
+                btnMin.Click += (_, _) => this.WindowState = FormWindowState.Minimized;
+
+            if (btnMax != null)
+                btnMax.Click += (_, _) =>
+                {
+                    this.WindowState = this.WindowState == FormWindowState.Maximized
+                        ? FormWindowState.Normal
+                        : FormWindowState.Maximized;
+                };
+        }
+
         protected void WireWindowButtons(Button close, Button min, Button max)
         {
             btnClose = close;
@@ -59,6 +89,7 @@ namespace KLLA
 
             if (btnClose != null)
                 btnClose.Click += (_, _) => this.Close();
+
 
             if (btnMin != null)
                 btnMin.Click += (_, _) => this.WindowState = FormWindowState.Minimized;
