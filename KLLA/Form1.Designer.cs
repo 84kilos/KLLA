@@ -181,7 +181,6 @@
             ForeColor = SystemColors.ControlText;
             Name = "Form1";
             Text = "KLLA";
-            Load += Form1_Load;
             panelHeader.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

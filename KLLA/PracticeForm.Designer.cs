@@ -196,7 +196,6 @@
             Controls.Add(lblTitle);
             Controls.Add(panelHeader);
             Name = "PracticeForm";
-            Text = "s";
             Load += PracticeForm_Load;
             panelHeader.ResumeLayout(false);
             ResumeLayout(false);

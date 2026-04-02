@@ -22,9 +22,6 @@ namespace KLLA
         int wordId = 0;
         int MAXPAGESIZE = 4;
 
-        private const string AZURE_KEY = "AZLLB8UpSxw6iKhjpMIG3FP7BGPcxyArQ6P3wP1XNunBNUhHdEdKJQQJ99CBACYeBjFXJ3w3AAAYACOGISoR"; // [2]
-        private const string AZURE_REGION = "eastus"; // [3]
-
 
         public DictionaryForm(Form mainForm)
         {
@@ -124,7 +121,7 @@ namespace KLLA
             {
                 // Connect to database and load word lists
                 await db.Connect_Database();
-                words = db.GetAllWords();
+                words = db.GetVocabOnly();
                 filteredWords = words;
 
                 //Populate the first page of listboxes

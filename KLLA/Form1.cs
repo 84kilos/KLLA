@@ -85,11 +85,6 @@ namespace KLLA
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         // ========= PICK RANDOM WORD =========
         private void learnWordB_Click(object sender, EventArgs e)
         {

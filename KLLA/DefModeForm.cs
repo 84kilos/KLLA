@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.Wave;
 using static KLLA.Form1;
 
 namespace KLLA
@@ -24,20 +25,17 @@ namespace KLLA
         List<KoreanVocabulary> words;
         List<string> choices = new List<string>();
 
-        //azure tts setup
-        private const string AZURE_KEY = "AZLLB8UpSxw6iKhjpMIG3FP7BGPcxyArQ6P3wP1XNunBNUhHdEdKJQQJ99CBACYeBjFXJ3w3AAAYACOGISoR"; // [2]
-        private const string AZURE_REGION = "eastus"; // [3]
 
         //global stats for finish screen
         int questionsCounter = 0;
         int questionsRight = 0;
         int longestStreak = 0;
         int currentStreak = 0;
-
         public DefModeForm(Form practiceForm)
         {
             InitializeComponent();
             this.practiceForm = practiceForm;
+
 
             // Wire standard window buttons
             WireWindowButtons(btnClose, btnMin, btnMax);
@@ -45,7 +43,7 @@ namespace KLLA
             // Make header draggable
             EnableDraggableHeader(panelHeader);
 
-            // ============= REWIRE CLOSE AND RETURN BUTTON TO RETURN TO MAIN =============
+            // ============= REWIRE CLOSE, RETURN, AND COMPLETE BUTTONS TO RETURN TO PRACTICE FORM =============
             btnClose.Click += (_, _) =>
             {
                 practiceForm.Show();
@@ -113,7 +111,7 @@ namespace KLLA
             {
                 // Connect to database and load word lists
                 await db.Connect_Database();
-                words = db.GetAllWords();
+                words = db.GetVocabOnly();
 
                 lblLoading.Visible = false;
                 //Populate the first page of listboxes
@@ -212,6 +210,7 @@ namespace KLLA
 
             if (clickedButton.Text == currentWord.EnglishTranslation)
             {
+                CorrectSound();
                 questionsRight++;
                 changeButton(clickedButton, true);
                 currentStreak++;
@@ -222,6 +221,7 @@ namespace KLLA
             }
             else
             {
+                IncorrectSound();
                 changeButton(clickedButton, false);
                 foreach (Button btn in buttons)
                 {
@@ -243,6 +243,7 @@ namespace KLLA
             btnFinish.Visible = true;
         }
 
+        //============ TTS ON WORD CLICK ============
         private async void lblWordKor_Click(object sender, EventArgs e)
         {
             //TODO play sound
@@ -271,6 +272,9 @@ namespace KLLA
             LoadWord();
         }
 
+        //============ HARDER QUESTION BTN (GETS HARDER QUESTION TODO) ============
+
+        //============ FINISH BTN ============
         private void btnFinish_Click(object sender, EventArgs e)
         {
             float percentage = ((float)questionsRight / questionsCounter) * 100;

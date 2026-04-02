@@ -1,12 +1,18 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using NAudio.Wave;
+using System.Media;
 
 namespace KLLA
 {
     public class BaseForm : Form
     {
+        protected readonly string AZURE_KEY = "VppLpScljVOOFilZNfIxxK34QNcOxT2Gde4hhj50MIpBC8Ae8c6fJQQJ99CCACYeBjFXJ3w3AAAYACOGmpL4"; // [2]
+        protected readonly string AZURE_REGION = "eastus"; // [3]
+
         //========== COLORS ===========
         protected readonly Color KoreaRed = ColorTranslator.FromHtml("#C60C30");
         protected readonly Color KoreaBlue = ColorTranslator.FromHtml("#003478");
@@ -27,8 +33,16 @@ namespace KLLA
         protected Button btnMax;
         protected Button btnReturn;
 
+        protected SoundPlayer correctPlayer;
+        protected SoundPlayer incorrectPlayer;
+
         public BaseForm()
         {
+            string cor = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audio", "correct.wav");
+            string inc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audio", "incorrect.wav");
+            correctPlayer = new SoundPlayer(cor);
+            incorrectPlayer = new SoundPlayer(inc);
+
             // =========== CUSTOM BORDER SETTINGS ===========
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = OffWhite;
@@ -101,6 +115,17 @@ namespace KLLA
                         ? FormWindowState.Normal
                         : FormWindowState.Maximized;
                 };
+        }
+
+        // ============= SOUNDS! FOR USER FEEDBACK =============
+        protected void CorrectSound()
+        {
+            correctPlayer?.Play();
+        }
+
+        protected void IncorrectSound()
+        {
+            incorrectPlayer?.Play();
         }
 
         // ============= FROM GDI, CREATES ROUNDED RECTANGLE REGION IN MEMORY =============
