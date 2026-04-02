@@ -5,15 +5,14 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Media;
-using DotNetEnv;
 
 namespace KLLA
 {
     public class BaseForm : Form
     {
 
-        protected readonly string AZURE_KEY;
-        protected readonly string AZURE_REGION;
+        protected readonly string AZURE_KEY = "VppLpScljVOOFilZNfIxxK34QNcOxT2Gde4hhj50MIpBC8Ae8c6fJQQJ99CCACYeBjFXJ3w3AAAYACOGmpL4";
+        protected readonly string AZURE_REGION = "eastus";
 
         //========== COLORS ===========
         protected readonly Color KoreaRed = ColorTranslator.FromHtml("#C60C30");
@@ -40,10 +39,7 @@ namespace KLLA
 
         public BaseForm()
         {
-            DotNetEnv.Env.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "glob.env"));
 
-            AZURE_KEY = Environment.GetEnvironmentVariable("AZURE_KEY");
-            AZURE_REGION = Environment.GetEnvironmentVariable("AZURE_REGION");
             string cor = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audio", "correct.wav");
             string inc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "audio", "incorrect.wav");
             correctPlayer = new SoundPlayer(cor);
