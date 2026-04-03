@@ -83,12 +83,10 @@ namespace KLLA
                 ApplyRoundedRegion(btnChoice4, 20);
                 ApplyRoundedRegion(btnChoice5, 20);
                 ApplyRoundedRegion(btnNext, 20);
-                ApplyRoundedRegion(btnHarder, 20);
                 ApplyRoundedRegion(btnFinish, 20);
                 ApplyRoundedRegion(btnComplete, 20);
                 ApplyRoundedRegion(lblResultQuestions, 20);
                 ApplyRoundedRegion(lblResultStreak, 20);
-                ApplyRoundedRegion(lblResultOther, 20);
             };
         }
 
@@ -100,12 +98,10 @@ namespace KLLA
         private async void DefModeForm_Load(object sender, EventArgs e)
         {
             btnNext.Visible = false;
-            btnHarder.Visible = false;
             btnFinish.Visible = false;
             btnComplete.Visible = false;
             lblResultQuestions.Visible = false;
             lblResultStreak.Visible = false;
-            lblResultOther.Visible = false;
 
             try
             {
@@ -133,7 +129,6 @@ namespace KLLA
             }
 
             btnNext.Visible = false;
-            btnHarder.Visible = false;
             btnFinish.Visible = false;
 
             choices.Clear();
@@ -239,7 +234,6 @@ namespace KLLA
             }
 
             btnNext.Visible = true;
-            btnHarder.Visible = true;
             btnFinish.Visible = true;
         }
 
@@ -301,7 +295,7 @@ namespace KLLA
                 lblWordKor.ForeColor = RTBGradient2;
             }
 
-            Button[] buttons = { btnChoice0, btnChoice1, btnChoice2, btnChoice3, btnChoice4, btnChoice5, btnFinish, btnHarder, btnNext };
+            Button[] buttons = { btnChoice0, btnChoice1, btnChoice2, btnChoice3, btnChoice4, btnChoice5, btnFinish, btnNext };
             foreach (Button btn in buttons)
             {
                 btn.Visible = false;
@@ -312,7 +306,6 @@ namespace KLLA
 
             lblResultQuestions.Visible = true;
             lblResultStreak.Visible = true;
-            lblResultOther.Visible = true;
 
             btnComplete.Visible = true;
         }

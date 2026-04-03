@@ -40,7 +40,14 @@
             lblInstruction = new Label();
             btnSen = new Button();
             btnDef = new Button();
+            gbTheme = new GroupBox();
+            btnTheme4 = new Button();
+            btnTheme3 = new Button();
+            btnTheme2 = new Button();
+            btnTheme1 = new Button();
+            btnTheme0 = new Button();
             panelHeader.SuspendLayout();
+            gbTheme.SuspendLayout();
             SuspendLayout();
             // 
             // panelHeader
@@ -123,7 +130,7 @@
             btnBegin.FlatStyle = FlatStyle.Flat;
             btnBegin.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnBegin.ForeColor = Color.Black;
-            btnBegin.Location = new Point(321, 399);
+            btnBegin.Location = new Point(313, 383);
             btnBegin.Name = "btnBegin";
             btnBegin.Size = new Size(155, 48);
             btnBegin.TabIndex = 18;
@@ -146,9 +153,9 @@
             // lblInstruction
             // 
             lblInstruction.BackColor = Color.White;
-            lblInstruction.Location = new Point(176, 476);
+            lblInstruction.Location = new Point(59, 443);
             lblInstruction.Name = "lblInstruction";
-            lblInstruction.Size = new Size(454, 58);
+            lblInstruction.Size = new Size(662, 65);
             lblInstruction.TabIndex = 23;
             lblInstruction.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -159,7 +166,7 @@
             btnSen.FlatStyle = FlatStyle.Flat;
             btnSen.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSen.ForeColor = Color.Black;
-            btnSen.Location = new Point(223, 290);
+            btnSen.Location = new Point(215, 274);
             btnSen.Name = "btnSen";
             btnSen.Size = new Size(357, 87);
             btnSen.TabIndex = 24;
@@ -174,7 +181,7 @@
             btnDef.FlatStyle = FlatStyle.Flat;
             btnDef.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDef.ForeColor = Color.Black;
-            btnDef.Location = new Point(223, 177);
+            btnDef.Location = new Point(215, 161);
             btnDef.Name = "btnDef";
             btnDef.Size = new Size(357, 87);
             btnDef.TabIndex = 25;
@@ -182,12 +189,96 @@
             btnDef.UseVisualStyleBackColor = false;
             btnDef.Click += btnDef_Click;
             // 
+            // gbTheme
+            // 
+            gbTheme.Controls.Add(btnTheme4);
+            gbTheme.Controls.Add(btnTheme3);
+            gbTheme.Controls.Add(btnTheme2);
+            gbTheme.Controls.Add(btnTheme1);
+            gbTheme.Controls.Add(btnTheme0);
+            gbTheme.Location = new Point(12, 514);
+            gbTheme.Name = "gbTheme";
+            gbTheme.Size = new Size(762, 89);
+            gbTheme.TabIndex = 26;
+            gbTheme.TabStop = false;
+            // 
+            // btnTheme4
+            // 
+            btnTheme4.BackColor = Color.WhiteSmoke;
+            btnTheme4.FlatAppearance.BorderSize = 0;
+            btnTheme4.FlatStyle = FlatStyle.Flat;
+            btnTheme4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTheme4.ForeColor = Color.Black;
+            btnTheme4.Location = new Point(605, 25);
+            btnTheme4.Name = "btnTheme4";
+            btnTheme4.Size = new Size(141, 48);
+            btnTheme4.TabIndex = 31;
+            btnTheme4.Text = "Directions";
+            btnTheme4.UseVisualStyleBackColor = false;
+            // 
+            // btnTheme3
+            // 
+            btnTheme3.BackColor = Color.WhiteSmoke;
+            btnTheme3.FlatAppearance.BorderSize = 0;
+            btnTheme3.FlatStyle = FlatStyle.Flat;
+            btnTheme3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTheme3.ForeColor = Color.Black;
+            btnTheme3.Location = new Point(458, 25);
+            btnTheme3.Name = "btnTheme3";
+            btnTheme3.Size = new Size(141, 48);
+            btnTheme3.TabIndex = 30;
+            btnTheme3.Text = "Work";
+            btnTheme3.UseVisualStyleBackColor = false;
+            // 
+            // btnTheme2
+            // 
+            btnTheme2.BackColor = Color.WhiteSmoke;
+            btnTheme2.FlatAppearance.BorderSize = 0;
+            btnTheme2.FlatStyle = FlatStyle.Flat;
+            btnTheme2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTheme2.ForeColor = Color.Black;
+            btnTheme2.Location = new Point(311, 25);
+            btnTheme2.Name = "btnTheme2";
+            btnTheme2.Size = new Size(141, 48);
+            btnTheme2.TabIndex = 29;
+            btnTheme2.Text = "Ordering";
+            btnTheme2.UseVisualStyleBackColor = false;
+            // 
+            // btnTheme1
+            // 
+            btnTheme1.BackColor = Color.WhiteSmoke;
+            btnTheme1.FlatAppearance.BorderSize = 0;
+            btnTheme1.FlatStyle = FlatStyle.Flat;
+            btnTheme1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTheme1.ForeColor = Color.Black;
+            btnTheme1.Location = new Point(164, 25);
+            btnTheme1.Name = "btnTheme1";
+            btnTheme1.Size = new Size(141, 48);
+            btnTheme1.TabIndex = 28;
+            btnTheme1.Text = "Introductions";
+            btnTheme1.UseVisualStyleBackColor = false;
+            // 
+            // btnTheme0
+            // 
+            btnTheme0.BackColor = Color.WhiteSmoke;
+            btnTheme0.FlatAppearance.BorderSize = 0;
+            btnTheme0.FlatStyle = FlatStyle.Flat;
+            btnTheme0.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTheme0.ForeColor = Color.Black;
+            btnTheme0.Location = new Point(17, 25);
+            btnTheme0.Name = "btnTheme0";
+            btnTheme0.Size = new Size(141, 48);
+            btnTheme0.TabIndex = 27;
+            btnTheme0.Text = "Common";
+            btnTheme0.UseVisualStyleBackColor = false;
+            // 
             // PracticeForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(786, 575);
+            ClientSize = new Size(786, 615);
+            Controls.Add(gbTheme);
             Controls.Add(btnDef);
             Controls.Add(btnSen);
             Controls.Add(lblInstruction);
@@ -198,6 +289,7 @@
             Name = "PracticeForm";
             Load += PracticeForm_Load;
             panelHeader.ResumeLayout(false);
+            gbTheme.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -216,5 +308,11 @@
         private Label lblInstruction;
         private Button btnSen;
         private Button btnDef;
+        private GroupBox gbTheme;
+        private Button btnTheme4;
+        private Button btnTheme3;
+        private Button btnTheme2;
+        private Button btnTheme1;
+        private Button btnTheme0;
     }
 }

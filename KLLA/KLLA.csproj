@@ -27,9 +27,6 @@
     <None Update="audio\input.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="glob.env">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="MasterBank.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

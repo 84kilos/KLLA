@@ -36,7 +36,6 @@
             lblWordKor = new Label();
             lblWordRom = new Label();
             gbAnswerChoice = new GroupBox();
-            lblResultOther = new Label();
             lblResultStreak = new Label();
             lblResultQuestions = new Label();
             btnChoice5 = new Button();
@@ -47,7 +46,6 @@
             btnChoice0 = new Button();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             btnNext = new Button();
-            btnHarder = new Button();
             btnFinish = new Button();
             btnComplete = new Button();
             lblLoading = new Label();
@@ -141,7 +139,7 @@
             // 
             // gbAnswerChoice
             // 
-            gbAnswerChoice.Controls.Add(lblResultOther);
+            gbAnswerChoice.Controls.Add(lblLoading);
             gbAnswerChoice.Controls.Add(lblResultStreak);
             gbAnswerChoice.Controls.Add(lblResultQuestions);
             gbAnswerChoice.Controls.Add(btnChoice5);
@@ -156,22 +154,11 @@
             gbAnswerChoice.TabIndex = 12;
             gbAnswerChoice.TabStop = false;
             // 
-            // lblResultOther
-            // 
-            lblResultOther.BackColor = Color.WhiteSmoke;
-            lblResultOther.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblResultOther.Location = new Point(138, 235);
-            lblResultOther.Name = "lblResultOther";
-            lblResultOther.Size = new Size(468, 69);
-            lblResultOther.TabIndex = 37;
-            lblResultOther.Text = "todo more info";
-            lblResultOther.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // lblResultStreak
             // 
             lblResultStreak.BackColor = Color.WhiteSmoke;
             lblResultStreak.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblResultStreak.Location = new Point(138, 141);
+            lblResultStreak.Location = new Point(141, 192);
             lblResultStreak.Name = "lblResultStreak";
             lblResultStreak.Size = new Size(468, 69);
             lblResultStreak.TabIndex = 36;
@@ -182,7 +169,7 @@
             // 
             lblResultQuestions.BackColor = Color.WhiteSmoke;
             lblResultQuestions.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblResultQuestions.Location = new Point(138, 48);
+            lblResultQuestions.Location = new Point(141, 99);
             lblResultQuestions.Name = "lblResultQuestions";
             lblResultQuestions.Size = new Size(468, 69);
             lblResultQuestions.TabIndex = 35;
@@ -280,27 +267,13 @@
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNext.ForeColor = Color.Black;
-            btnNext.Location = new Point(540, 600);
+            btnNext.Location = new Point(499, 600);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(234, 57);
             btnNext.TabIndex = 31;
             btnNext.Text = "Next";
             btnNext.UseVisualStyleBackColor = false;
             btnNext.Click += btnNext_Click;
-            // 
-            // btnHarder
-            // 
-            btnHarder.BackColor = Color.WhiteSmoke;
-            btnHarder.FlatAppearance.BorderSize = 0;
-            btnHarder.FlatStyle = FlatStyle.Flat;
-            btnHarder.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnHarder.ForeColor = Color.Black;
-            btnHarder.Location = new Point(282, 600);
-            btnHarder.Name = "btnHarder";
-            btnHarder.Size = new Size(234, 57);
-            btnHarder.TabIndex = 32;
-            btnHarder.Text = "Something harder";
-            btnHarder.UseVisualStyleBackColor = false;
             // 
             // btnFinish
             // 
@@ -309,7 +282,7 @@
             btnFinish.FlatStyle = FlatStyle.Flat;
             btnFinish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFinish.ForeColor = Color.Black;
-            btnFinish.Location = new Point(26, 600);
+            btnFinish.Location = new Point(65, 600);
             btnFinish.Name = "btnFinish";
             btnFinish.Size = new Size(234, 57);
             btnFinish.TabIndex = 33;
@@ -334,7 +307,7 @@
             // lblLoading
             // 
             lblLoading.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLoading.Location = new Point(12, 67);
+            lblLoading.Location = new Point(-14, -187);
             lblLoading.Name = "lblLoading";
             lblLoading.Size = new Size(776, 595);
             lblLoading.TabIndex = 35;
@@ -347,11 +320,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 680);
-            Controls.Add(lblLoading);
             Controls.Add(lblWordRom);
             Controls.Add(btnComplete);
             Controls.Add(btnFinish);
-            Controls.Add(btnHarder);
             Controls.Add(btnNext);
             Controls.Add(gbAnswerChoice);
             Controls.Add(lblWordKor);
@@ -382,12 +353,10 @@
         private Button btnChoice0;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button btnNext;
-        private Button btnHarder;
         private Button btnFinish;
         private Button btnComplete;
         private Label lblResultQuestions;
         private Label lblResultStreak;
-        private Label lblResultOther;
         private Label lblLoading;
     }
 }

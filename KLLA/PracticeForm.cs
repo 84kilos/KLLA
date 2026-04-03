@@ -8,6 +8,7 @@ namespace KLLA
         private readonly Form mainForm;
 
         int mode = -1;
+        string theme = "";
 
         public PracticeForm(Form mainForm)
         {
@@ -33,6 +34,13 @@ namespace KLLA
                 this.Close();
             };
 
+            // Wire theme buttons to shared click handlers
+            btnTheme0.Click += btnTheme_Click;
+            btnTheme1.Click += btnTheme_Click;
+            btnTheme2.Click += btnTheme_Click;
+            btnTheme3.Click += btnTheme_Click;
+            btnTheme4.Click += btnTheme_Click;
+
             // Apply rounded corners to form and main buttons when shown
             this.Shown += (s, e) =>
             {
@@ -43,6 +51,11 @@ namespace KLLA
                 ApplyRoundedRegion(btnMax, 15);
                 ApplyRoundedRegion(btnDef, 20);
                 ApplyRoundedRegion(btnSen, 20);
+                ApplyRoundedRegion(btnTheme0, 20);
+                ApplyRoundedRegion(btnTheme1, 20);
+                ApplyRoundedRegion(btnTheme2, 20);
+                ApplyRoundedRegion(btnTheme3, 20);
+                ApplyRoundedRegion(btnTheme4, 20);
                 ApplyRoundedRegion(lblInstruction, 20);
                 ApplyRoundedRegion(btnBegin, 20);
             };
@@ -51,10 +64,34 @@ namespace KLLA
         // Placeholder for future load logic
         private void PracticeForm_Load(object sender, EventArgs e)
         {
+
+            gbTheme.Visible = false;
             lblTitleKor.ForeColor = RTBGradient2;
-            // Add initialization code here
+            
         }
 
+        // Shared click handler for exclusive theme buttons
+        private void btnTheme_Click(object sender, EventArgs e)
+        {
+            Button[] buttons = { btnTheme0, btnTheme1, btnTheme2, btnTheme3, btnTheme4};
+            foreach (Button btn in buttons)
+            {
+                if (btn == sender)
+                {
+                    btn.BackColor = RTBGradient2;
+                    btn.ForeColor = Color.White;
+                    theme = btn.Text.ToLower();
+                }
+                else
+                {
+                    btn.BackColor = Color.WhiteSmoke;
+                    btn.ForeColor = Color.Black;
+                }
+            }
+
+        }
+
+        // Two functions to handle the mode clicks
         private void btnDef_Click(object sender, EventArgs e)
         {
             btnDef.BackColor = RTBGradient2;
@@ -68,6 +105,8 @@ namespace KLLA
         }
         private void btnSen_Click(object sender, EventArgs e)
         {
+            gbTheme.Visible = true;
+
             btnSen.BackColor = RTBGradient2;
             btnSen.ForeColor = Color.White;
             btnDef.BackColor = Color.WhiteSmoke;
@@ -78,18 +117,26 @@ namespace KLLA
             mode = 1;
         }
 
+        // Begin button click to handle which form to open
         private void btnBegin_Click(object sender, EventArgs e)
         {
             if (mode == 0)
             {
-                var defPracticeForm = new DefModeForm(this);
-                defPracticeForm.Show();
+                var DefMode = new DefModeForm(this);
+                DefMode.Show();
                 this.Hide();
             }
             else if (mode == 1)
             {
-                var defPracticeForm = new Form1(this);
-                defPracticeForm.Show();
+                if (string.IsNullOrEmpty(theme))
+                {
+                    lblInstruction.Text = "Please select a theme first!";
+                    lblInstruction.ForeColor = AccentRed;
+                    lblInstruction.BackColor = ColorTranslator.FromHtml("#FADADA");
+                    return;
+                }
+                var SenMode = new SenModeForm(this, theme);
+                SenMode.Show();
                 this.Hide();
             }
             else

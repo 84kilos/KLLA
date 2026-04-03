@@ -17,7 +17,7 @@ namespace KLLA
         private Random rand = new Random();
         private KllaDB db = new KllaDB();
 
-        public SenModeForm(Form practiceForm)
+        public SenModeForm(Form practiceForm, string theme)
         {
             InitializeComponent();
 
