@@ -198,18 +198,24 @@ namespace KLLA
             using var recognizer = new SpeechRecognizer(config, audioInput);
 
             var pronConfig = new PronunciationAssessmentConfig(expectedSentence, GradingSystem.HundredMark, Granularity.Phoneme, true);
+            pronConfig.EnableProsodyAssessment();
             pronConfig.ApplyTo(recognizer);
 
             var result = await recognizer.RecognizeOnceAsync();
 
             var pronResult = PronunciationAssessmentResult.FromResult(result);
+            double pronScore = pronResult.AccuracyScore * 0.4
+                + pronResult.ProsodyScore * 0.2
+                + pronResult.FluencyScore * 0.2
+                + pronResult.CompletenessScore * 0.2;
+
             totalPronunciation += pronResult.PronunciationScore;
             totalAccuracy += pronResult.AccuracyScore;
             totalFluency += pronResult.FluencyScore;
             totalCompleteness += pronResult.CompletenessScore;
 
-            lblPronunciation.Text = $"{(int)pronResult.PronunciationScore}%";
-            lblPronunciation.Tag = (int)pronResult.PronunciationScore;
+            lblPronunciation.Text = $"{(int)pronScore}%";
+            lblPronunciation.Tag = (int)pronScore;
             lblAccuracy.Text = $"Accuracy: {(int)pronResult.AccuracyScore}%";
             lblAccuracy.Tag = (int)pronResult.AccuracyScore;
             lblFluency.Text = $"Fluency: {(int)pronResult.FluencyScore}%";
