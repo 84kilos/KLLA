@@ -45,8 +45,17 @@
             lblAccuracy = new Label();
             lblPronunciation = new Label();
             lblSentencePron = new Label();
+            gbResults = new GroupBox();
+            lblResCompleteness = new Label();
+            lblResFluency = new Label();
+            lblResAccuracy = new Label();
+            lblResPronunciation = new Label();
+            lblQuestionCounter = new Label();
+            btnClose2 = new Button();
+            lblResMessage = new Label();
             panelHeader.SuspendLayout();
             gbStats.SuspendLayout();
+            gbResults.SuspendLayout();
             SuspendLayout();
             // 
             // btnReturn
@@ -130,12 +139,13 @@
             btnFinish.FlatStyle = FlatStyle.Flat;
             btnFinish.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFinish.ForeColor = Color.Black;
-            btnFinish.Location = new Point(69, 554);
+            btnFinish.Location = new Point(114, 554);
             btnFinish.Name = "btnFinish";
             btnFinish.Size = new Size(234, 57);
             btnFinish.TabIndex = 35;
             btnFinish.Text = "Finish";
             btnFinish.UseVisualStyleBackColor = false;
+            btnFinish.Click += btnFinish_Click;
             // 
             // btnNext
             // 
@@ -144,7 +154,7 @@
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNext.ForeColor = Color.Black;
-            btnNext.Location = new Point(503, 554);
+            btnNext.Location = new Point(456, 554);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(234, 57);
             btnNext.TabIndex = 34;
@@ -166,7 +176,6 @@
             btnRecord.Padding = new Padding(10);
             btnRecord.Size = new Size(245, 246);
             btnRecord.TabIndex = 36;
-            btnRecord.Text = "Next";
             btnRecord.UseVisualStyleBackColor = false;
             btnRecord.Click += btnRecord_Click;
             // 
@@ -247,12 +256,108 @@
             lblSentencePron.Text = "gab peosammida or something";
             lblSentencePron.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // gbResults
+            // 
+            gbResults.Controls.Add(lblResCompleteness);
+            gbResults.Controls.Add(lblResFluency);
+            gbResults.Controls.Add(lblResAccuracy);
+            gbResults.Location = new Point(141, 216);
+            gbResults.Name = "gbResults";
+            gbResults.Size = new Size(238, 304);
+            gbResults.TabIndex = 41;
+            gbResults.TabStop = false;
+            // 
+            // lblResCompleteness
+            // 
+            lblResCompleteness.BackColor = Color.WhiteSmoke;
+            lblResCompleteness.Font = new Font("Segoe UI", 11F);
+            lblResCompleteness.Location = new Point(6, 216);
+            lblResCompleteness.Name = "lblResCompleteness";
+            lblResCompleteness.Size = new Size(226, 76);
+            lblResCompleteness.TabIndex = 2;
+            lblResCompleteness.Text = "Total Completeness: ";
+            lblResCompleteness.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblResFluency
+            // 
+            lblResFluency.BackColor = Color.WhiteSmoke;
+            lblResFluency.Font = new Font("Segoe UI", 11F);
+            lblResFluency.Location = new Point(6, 121);
+            lblResFluency.Name = "lblResFluency";
+            lblResFluency.Size = new Size(226, 76);
+            lblResFluency.TabIndex = 1;
+            lblResFluency.Text = "Total Fluency: ";
+            lblResFluency.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblResAccuracy
+            // 
+            lblResAccuracy.BackColor = Color.WhiteSmoke;
+            lblResAccuracy.Font = new Font("Segoe UI", 11F);
+            lblResAccuracy.Location = new Point(6, 27);
+            lblResAccuracy.Name = "lblResAccuracy";
+            lblResAccuracy.Size = new Size(226, 76);
+            lblResAccuracy.TabIndex = 0;
+            lblResAccuracy.Text = "Total Accuracy: ";
+            lblResAccuracy.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblResPronunciation
+            // 
+            lblResPronunciation.BackColor = Color.WhiteSmoke;
+            lblResPronunciation.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblResPronunciation.Location = new Point(418, 337);
+            lblResPronunciation.Name = "lblResPronunciation";
+            lblResPronunciation.Size = new Size(226, 147);
+            lblResPronunciation.TabIndex = 42;
+            lblResPronunciation.Text = "100%";
+            lblResPronunciation.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblQuestionCounter
+            // 
+            lblQuestionCounter.BackColor = Color.WhiteSmoke;
+            lblQuestionCounter.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblQuestionCounter.Location = new Point(418, 247);
+            lblQuestionCounter.Name = "lblQuestionCounter";
+            lblQuestionCounter.Size = new Size(226, 72);
+            lblQuestionCounter.TabIndex = 43;
+            lblQuestionCounter.Text = "Questions: 10/15";
+            lblQuestionCounter.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnClose2
+            // 
+            btnClose2.BackColor = Color.WhiteSmoke;
+            btnClose2.FlatAppearance.BorderSize = 0;
+            btnClose2.FlatStyle = FlatStyle.Flat;
+            btnClose2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClose2.ForeColor = Color.Black;
+            btnClose2.Location = new Point(278, 554);
+            btnClose2.Name = "btnClose2";
+            btnClose2.Size = new Size(234, 57);
+            btnClose2.TabIndex = 44;
+            btnClose2.Text = "Close";
+            btnClose2.UseVisualStyleBackColor = false;
+            btnClose2.Click += btnClose2_Click;
+            // 
+            // lblResMessage
+            // 
+            lblResMessage.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblResMessage.Location = new Point(0, 119);
+            lblResMessage.Name = "lblResMessage";
+            lblResMessage.Size = new Size(800, 78);
+            lblResMessage.TabIndex = 45;
+            lblResMessage.Text = "로딩 중...";
+            lblResMessage.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // SenModeForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 634);
+            Controls.Add(lblResMessage);
+            Controls.Add(btnClose2);
+            Controls.Add(lblQuestionCounter);
+            Controls.Add(lblResPronunciation);
+            Controls.Add(gbResults);
             Controls.Add(lblSentencePron);
             Controls.Add(lblPronunciation);
             Controls.Add(gbStats);
@@ -267,6 +372,7 @@
             Load += SenModeForm_Load;
             panelHeader.ResumeLayout(false);
             gbStats.ResumeLayout(false);
+            gbResults.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -288,5 +394,13 @@
         private Label lblFluency;
         private Label lblPronunciation;
         private Label lblSentencePron;
+        private GroupBox gbResults;
+        private Label lblResCompleteness;
+        private Label lblResFluency;
+        private Label lblResAccuracy;
+        private Label lblResPronunciation;
+        private Label lblQuestionCounter;
+        private Button btnClose2;
+        private Label lblResMessage;
     }
 }
