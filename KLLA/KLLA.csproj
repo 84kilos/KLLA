@@ -11,10 +11,25 @@
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="Google.Cloud.Speech.V1" Version="3.9.0" />
-    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.48.2" />
+    <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.49.1" />
     <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="Supabase" Version="1.1.1" />
     <PackageReference Include="Supabase.Postgrest" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +41,9 @@
     </None>
     <None Update="audio\input.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="images\mic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="MasterBank.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

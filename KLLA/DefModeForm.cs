@@ -31,6 +31,8 @@ namespace KLLA
         int questionsRight = 0;
         int longestStreak = 0;
         int currentStreak = 0;
+
+
         public DefModeForm(Form practiceForm)
         {
             InitializeComponent();

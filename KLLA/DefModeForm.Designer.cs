@@ -139,7 +139,6 @@
             // 
             // gbAnswerChoice
             // 
-            gbAnswerChoice.Controls.Add(lblLoading);
             gbAnswerChoice.Controls.Add(lblResultStreak);
             gbAnswerChoice.Controls.Add(lblResultQuestions);
             gbAnswerChoice.Controls.Add(btnChoice5);
@@ -306,11 +305,12 @@
             // 
             // lblLoading
             // 
+            lblLoading.BackColor = Color.White;
             lblLoading.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLoading.Location = new Point(-14, -187);
+            lblLoading.Location = new Point(12, 48);
             lblLoading.Name = "lblLoading";
-            lblLoading.Size = new Size(776, 595);
-            lblLoading.TabIndex = 35;
+            lblLoading.Size = new Size(776, 606);
+            lblLoading.TabIndex = 36;
             lblLoading.Text = "로딩 중...";
             lblLoading.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -320,13 +320,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 680);
-            Controls.Add(lblWordRom);
+            Controls.Add(lblLoading);
             Controls.Add(btnComplete);
             Controls.Add(btnFinish);
             Controls.Add(btnNext);
             Controls.Add(gbAnswerChoice);
-            Controls.Add(lblWordKor);
             Controls.Add(panelHeader);
+            Controls.Add(lblWordKor);
+            Controls.Add(lblWordRom);
             Name = "DefModeForm";
             Text = "DefMode";
             Load += DefModeForm_Load;

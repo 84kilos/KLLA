@@ -91,6 +91,8 @@ namespace KLLA
         // CONNECTION
         // -----------------------------------------------------------------
         //need fallback ~~
+
+        private bool _dbInitialized = false;
         internal async Task Connect_Database()
         {
             try
@@ -106,11 +108,16 @@ namespace KLLA
                 //Load sentences
                 var sentenceResponse = await _supabase.From<KoreanSentence>().Get();
                 _sentences = sentenceResponse.Models;
-
-                Console.WriteLine($"Loaded {_words.Count} vocab words, {_sentences.Count} sentences.");
+                foreach (var s in _sentences)
+                    s.Theme = s.Theme?.Trim(); //cleans after funct passes
+                _dbInitialized = true;
             }
-            catch (Exception e) { MessageBox.Show($"Error: {e}"); }
+            catch (Exception e) { 
+                _dbInitialized = false;
+                MessageBox.Show($"Database Error: {e}"); 
+            }
         }
+        internal bool isDatabaseConnnected() => _dbInitialized;
 
         // -----------------------------------------------------------------
         // VOCABULARY — korean_vocabulary
@@ -153,8 +160,10 @@ namespace KLLA
         internal List<KoreanSentence> GetAllSentences() => new List<KoreanSentence>(_sentences);
 
         //returns all sentences matching a theme (common, ordering, work, introductions, directions)
-        internal List<KoreanSentence> GetSentencesByTheme(string theme) =>
-            _sentences.FindAll(s => string.Equals(s.Theme?.Trim(), theme.Trim(), StringComparison.OrdinalIgnoreCase));
+        internal List<KoreanSentence> GetSentencesByTheme(string theme)
+        {
+            return _sentences.FindAll(s => string.Equals(s.Theme?.Trim(), theme.Trim(), StringComparison.OrdinalIgnoreCase));
+        }
 
         //get a random sentence in snetence database
         internal KoreanSentence? GetRandomSentence()
@@ -170,5 +179,7 @@ namespace KLLA
             if (filtered.Count == 0) return null;
             return filtered[new Random().Next(filtered.Count)];
         }
+
+        
     }
 }
