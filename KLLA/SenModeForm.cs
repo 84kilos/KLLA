@@ -177,8 +177,9 @@ namespace KLLA
             {
                 StopRecording();
                 isRecording = false;
-                btnRecord.BackColor = ColorTranslator.FromHtml("#DCEEFF");
+                btnRecord.BackgroundImage = Image.FromFile("images/load.png");
                 var result = await AssessPronunciation(Sentences[currentSentenceIndex].Sentence);
+                btnRecord.BackColor = ColorTranslator.FromHtml("#DCEEFF");
                 btnRecord.BackgroundImage = Image.FromFile("images/micEmpty.png");
                 gbStats.Visible = true;
                 lblPronunciation.Visible = true;
