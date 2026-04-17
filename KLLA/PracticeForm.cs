@@ -94,6 +94,8 @@ namespace KLLA
         // Two functions to handle the mode clicks
         private void btnDef_Click(object sender, EventArgs e)
         {
+            gbTheme.Visible = false;
+
             btnDef.BackColor = RTBGradient2;
             btnDef.ForeColor = Color.White;
             btnSen.BackColor = Color.WhiteSmoke;

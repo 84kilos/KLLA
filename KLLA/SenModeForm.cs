@@ -42,12 +42,12 @@ namespace KLLA
         double totalFluency = 0;
         double totalCompleteness = 0;
 
-        Color gradeColor1Front = ColorTranslator.FromHtml("#3B95E6");
-        Color gradeColor1Back = ColorTranslator.FromHtml("#D4E9FF");
-        Color gradeColor2Front = ColorTranslator.FromHtml("#2F86C9");
-        Color gradeColor2Back = ColorTranslator.FromHtml("#CFE4FA");
-        Color gradeColor3Front = ColorTranslator.FromHtml("#B85A6A");
-        Color gradeColor3Back = ColorTranslator.FromHtml("#F3D4D9");
+        Color gradeColor1Front = ColorTranslator.FromHtml("#6C8FE8");
+        Color gradeColor1Back = ColorTranslator.FromHtml("#E1E9FA");
+        Color gradeColor2Front = ColorTranslator.FromHtml("#8A7ACF");
+        Color gradeColor2Back = ColorTranslator.FromHtml("#E9E4F4");
+        Color gradeColor3Front = ColorTranslator.FromHtml("#B8638A");
+        Color gradeColor3Back = ColorTranslator.FromHtml("#F3DDE4");
 
         public SenModeForm(Form practiceForm, string theme)
         {
@@ -144,22 +144,22 @@ namespace KLLA
             currentSentenceIndex++;
             if (currentSentenceIndex >= Sentences.Count)
             {
-                MessageBox.Show("You've completed all sentences in this theme! Returning to theme selection.");
-                practiceForm.Show();
-                this.Close();
-                return;
+                this.btnFinish_Click(sender, e);
             }
-            lblSentenceKor.Text = Sentences[currentSentenceIndex].Sentence;
-            lblSentenceEng.Text = Sentences[currentSentenceIndex].Translation;
-            lblSentencePron.Text = Sentences[currentSentenceIndex].Pronunciation;
-            lblSentenceEng.Visible = false;
-            lblSentencePron.Visible = false;
-            lblTapped = false;
-            gbStats.Visible = false;
-            lblPronunciation.Visible = false;
+            else
+            {
+                lblSentenceKor.Text = Sentences[currentSentenceIndex].Sentence;
+                lblSentenceEng.Text = Sentences[currentSentenceIndex].Translation;
+                lblSentencePron.Text = Sentences[currentSentenceIndex].Pronunciation;
+                lblSentenceEng.Visible = false;
+                lblSentencePron.Visible = false;
+                lblTapped = false;
+                gbStats.Visible = false;
+                lblPronunciation.Visible = false;
 
-            btnFinish.Visible = false;
-            btnNext.Visible = false;
+                btnFinish.Visible = false;
+                btnNext.Visible = false;
+            }
 
         }
 
@@ -224,28 +224,33 @@ namespace KLLA
             lblCompleteness.Text = $"Completeness: {(int)pronResult.CompletenessScore}%";
             lblCompleteness.Tag = (int)pronResult.CompletenessScore;
 
-            if (pronResult.PronunciationScore >= 90)
+            if (pronScore >= 90)
             {
                 questionsRight++;
                 currentStreak++;
+                CorrectSound();
             }
-            else if (pronResult.PronunciationScore >= 80)
+            else if (pronScore >= 80)
             {
                 questionsRight++;
                 currentStreak++;
+                CorrectSound();
             }
-            else if (pronResult.PronunciationScore >= 70)
+            else if (pronScore >= 70)
             {
                 questionsRight++;
                 currentStreak++;
+                CorrectSound();
             }
-            else if (pronResult.PronunciationScore >= 60)
+            else if (pronScore >= 60)
             {
                 currentStreak = 0;
+                IncorrectSound();
             }
             else
             {
                 currentStreak = 0;
+                IncorrectSound();
             }
             if (currentStreak > longestStreak) longestStreak = currentStreak;
 
@@ -329,8 +334,9 @@ namespace KLLA
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
+            var grade = totalPronunciation / questionsCounter;
             lblQuestionCounter.Text = $"Questions: {questionsRight}/{questionsCounter}";
-            lblResPronunciation.Text = $"{(int)(totalPronunciation / questionsCounter)}%";
+            lblResPronunciation.Text = $"{(int)grade}%";
             //lblResPronunciation.Tag = (int)totalPronunciation;
             lblResAccuracy.Text = $"Total Accuracy: {(int)(totalAccuracy / questionsCounter)}%";
             //lblResAccuracy.Tag = (int)totalAccuracy;
@@ -343,28 +349,28 @@ namespace KLLA
 
             foreach (var label in labels)
             {
-                if (totalPronunciation >= 90)
+                if (grade >= 90)
                 {
                     lblResMessage.Text = "You're... too good...";
                     lblResMessage.ForeColor = AccentBlue;
                     label.ForeColor = AccentBlue;
                     label.BackColor = ColorTranslator.FromHtml("#DCEEFF");
                 }
-                else if (totalPronunciation >= 80)
+                else if (grade >= 80)
                 {
                     lblResMessage.Text = "That's pretty good!";
                     lblResMessage.ForeColor = gradeColor1Front;
                     label.ForeColor = gradeColor1Front;
                     label.BackColor = gradeColor1Back;
                 }
-                else if (totalPronunciation >= 70)
+                else if (grade >= 70)
                 {
                     lblResMessage.Text = "Not bad, just needs a little more practice!";
                     lblResMessage.ForeColor = gradeColor2Front;
                     label.ForeColor = gradeColor2Front;
                     label.BackColor = gradeColor2Back;
                 }
-                else if (totalPronunciation >= 60)
+                else if (grade >= 60)
                 {
                     lblResMessage.Text = "Practice makes perfect!";
                     lblResMessage.ForeColor = gradeColor3Front;
